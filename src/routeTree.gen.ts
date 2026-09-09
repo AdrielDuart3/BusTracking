@@ -10,33 +10,168 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedFavoritosRouteImport } from './routes/_authenticated/favoritos'
+import { Route as AuthenticatedHorariosRouteImport } from './routes/_authenticated/horarios'
+import { Route as AuthenticatedMapaRouteImport } from './routes/_authenticated/mapa'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
+import { Route as AuthenticatedPontosRouteImport } from './routes/_authenticated/pontos'
+import { Route as AuthenticatedRastrearRouteImport } from './routes/_authenticated/rastrear'
+import { Route as AuthenticatedItinerariosIndexRouteImport } from './routes/_authenticated/itinerarios.index'
+import { Route as AuthenticatedItinerariosLineIdRouteImport } from './routes/_authenticated/itinerarios.$lineId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFavoritosRoute = AuthenticatedFavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHorariosRoute = AuthenticatedHorariosRouteImport.update({
+  id: '/horarios',
+  path: '/horarios',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMapaRoute = AuthenticatedMapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPontosRoute = AuthenticatedPontosRouteImport.update({
+  id: '/pontos',
+  path: '/pontos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRastrearRoute = AuthenticatedRastrearRouteImport.update({
+  id: '/rastrear',
+  path: '/rastrear',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedItinerariosIndexRoute =
+  AuthenticatedItinerariosIndexRouteImport.update({
+    id: '/itinerarios/',
+    path: '/itinerarios/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedItinerariosLineIdRoute =
+  AuthenticatedItinerariosLineIdRouteImport.update({
+    id: '/itinerarios/$lineId',
+    path: '/itinerarios/$lineId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/favoritos': typeof AuthenticatedFavoritosRoute
+  '/horarios': typeof AuthenticatedHorariosRoute
+  '/mapa': typeof AuthenticatedMapaRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/pontos': typeof AuthenticatedPontosRoute
+  '/rastrear': typeof AuthenticatedRastrearRoute
+  '/itinerarios/$lineId': typeof AuthenticatedItinerariosLineIdRoute
+  '/itinerarios/': typeof AuthenticatedItinerariosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/favoritos': typeof AuthenticatedFavoritosRoute
+  '/horarios': typeof AuthenticatedHorariosRoute
+  '/mapa': typeof AuthenticatedMapaRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/pontos': typeof AuthenticatedPontosRoute
+  '/rastrear': typeof AuthenticatedRastrearRoute
+  '/itinerarios/$lineId': typeof AuthenticatedItinerariosLineIdRoute
+  '/itinerarios': typeof AuthenticatedItinerariosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/favoritos': typeof AuthenticatedFavoritosRoute
+  '/_authenticated/horarios': typeof AuthenticatedHorariosRoute
+  '/_authenticated/mapa': typeof AuthenticatedMapaRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/_authenticated/pontos': typeof AuthenticatedPontosRoute
+  '/_authenticated/rastrear': typeof AuthenticatedRastrearRoute
+  '/_authenticated/itinerarios/$lineId': typeof AuthenticatedItinerariosLineIdRoute
+  '/_authenticated/itinerarios/': typeof AuthenticatedItinerariosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/favoritos'
+    | '/horarios'
+    | '/mapa'
+    | '/perfil'
+    | '/pontos'
+    | '/rastrear'
+    | '/itinerarios/$lineId'
+    | '/itinerarios/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/favoritos'
+    | '/horarios'
+    | '/mapa'
+    | '/perfil'
+    | '/pontos'
+    | '/rastrear'
+    | '/itinerarios/$lineId'
+    | '/itinerarios'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/favoritos'
+    | '/_authenticated/horarios'
+    | '/_authenticated/mapa'
+    | '/_authenticated/perfil'
+    | '/_authenticated/pontos'
+    | '/_authenticated/rastrear'
+    | '/_authenticated/itinerarios/$lineId'
+    | '/_authenticated/itinerarios/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +183,117 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/favoritos': {
+      id: '/_authenticated/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof AuthenticatedFavoritosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/horarios': {
+      id: '/_authenticated/horarios'
+      path: '/horarios'
+      fullPath: '/horarios'
+      preLoaderRoute: typeof AuthenticatedHorariosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mapa': {
+      id: '/_authenticated/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof AuthenticatedMapaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/pontos': {
+      id: '/_authenticated/pontos'
+      path: '/pontos'
+      fullPath: '/pontos'
+      preLoaderRoute: typeof AuthenticatedPontosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/rastrear': {
+      id: '/_authenticated/rastrear'
+      path: '/rastrear'
+      fullPath: '/rastrear'
+      preLoaderRoute: typeof AuthenticatedRastrearRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/itinerarios/': {
+      id: '/_authenticated/itinerarios/'
+      path: '/itinerarios'
+      fullPath: '/itinerarios/'
+      preLoaderRoute: typeof AuthenticatedItinerariosIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/itinerarios/$lineId': {
+      id: '/_authenticated/itinerarios/$lineId'
+      path: '/itinerarios/$lineId'
+      fullPath: '/itinerarios/$lineId'
+      preLoaderRoute: typeof AuthenticatedItinerariosLineIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedFavoritosRoute: typeof AuthenticatedFavoritosRoute
+  AuthenticatedHorariosRoute: typeof AuthenticatedHorariosRoute
+  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedPontosRoute: typeof AuthenticatedPontosRoute
+  AuthenticatedRastrearRoute: typeof AuthenticatedRastrearRoute
+  AuthenticatedItinerariosLineIdRoute: typeof AuthenticatedItinerariosLineIdRoute
+  AuthenticatedItinerariosIndexRoute: typeof AuthenticatedItinerariosIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedFavoritosRoute: AuthenticatedFavoritosRoute,
+  AuthenticatedHorariosRoute: AuthenticatedHorariosRoute,
+  AuthenticatedMapaRoute: AuthenticatedMapaRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+  AuthenticatedPontosRoute: AuthenticatedPontosRoute,
+  AuthenticatedRastrearRoute: AuthenticatedRastrearRoute,
+  AuthenticatedItinerariosLineIdRoute: AuthenticatedItinerariosLineIdRoute,
+  AuthenticatedItinerariosIndexRoute: AuthenticatedItinerariosIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
