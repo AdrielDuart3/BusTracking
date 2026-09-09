@@ -263,7 +263,7 @@ function SignUpForm() {
     if (Object.keys(next).length) return;
 
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -273,11 +273,19 @@ function SignUpForm() {
     });
     setLoading(false);
     if (error) {
+      const msg = error.message.toLowerCase();
       toast.error(
-        error.message.includes("already registered")
+        msg.includes("already registered") || msg.includes("already been registered")
           ? "Este e-mail já possui cadastro."
-          : "Não foi possível criar a conta. Tente novamente.",
+          : msg.includes("weak")
+            ? "Senha muito fraca ou já vazada. Use uma senha mais forte e única."
+            : error.message,
       );
+      return;
+    }
+    if (!data.session) {
+      toast.success("Conta criada! Confirme o e-mail que enviamos para entrar.");
+      void navigate({ to: "/auth", search: { modo: "login" } });
       return;
     }
     toast.success("Conta criada com sucesso!");
