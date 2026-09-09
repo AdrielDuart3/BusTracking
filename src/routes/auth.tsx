@@ -168,10 +168,13 @@ function LoginForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) {
+      const msg = error.message.toLowerCase();
       toast.error(
-        error.message.includes("Invalid login")
+        msg.includes("invalid login")
           ? "E-mail ou senha incorretos."
-          : "Não foi possível entrar. Tente novamente.",
+          : msg.includes("email not confirmed")
+            ? "Confirme seu e-mail pelo link que enviamos antes de entrar."
+            : error.message,
       );
       return;
     }
